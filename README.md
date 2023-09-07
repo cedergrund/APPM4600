@@ -1,3 +1,5 @@
+CEDERGRUND
+
 Welcome!
 
 This is Gustav Cedergrund's repository for APPM4600 - Numerical Analysis and Scientific Computing. All work for this class will be turned in via this git repo.
