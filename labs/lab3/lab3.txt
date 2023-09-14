@@ -1,0 +1,104 @@
+
+APPM4600 Lab3 - Gustav Cedergrund
+
+Exersize Solutions:
+
+1. 
+Output from bisection method:
+"
+    (a):
+    the approximate root is 0.9999999701976776
+    the error message reads: 0
+    f(astar) = -2.98023206113385e-08
+
+    (b):
+    the approximate root is -1
+    the error message reads: 1
+    f(astar) = -2
+
+    (c):
+    the approximate root is 0.9999999701976776
+    the error message reads: 0
+    f(astar) = -2.98023206113385e-08
+"
+
+Here, we can see that the bisection method works for interval (a) and (c), but not for (b). It is unsuccessful
+as the root for x^2 has positive values on both sides of it, so that the bisection can't compare signs to find the
+root as it usually does. For this function, this means that bisection cannot find the root at x=0.
+
+2. 
+Output from bisection method:
+"
+    (a):
+    the approximate root is 1.000000190734863
+    the error message reads: 0
+    f(astar) = 1.525878685839651e-06
+
+
+    (b):
+    the approximate root is 0
+    the error message reads: 1
+    f(astar) = -3
+
+
+    (c) on interval (0,0.5):
+    the approximate root is 0
+    the error message reads: 0
+    f(astar) = 0.0
+
+
+    (c) on interval (0.5,(3/4)*pi):
+    the approximate root is 0.5
+    the error message reads: 1
+    f(astar) = 0.479425538604203
+"
+
+The behavior mimics that which is expected. The code was successful for (a) and (c) with the first set of 
+endpoints as there are zeros within those intervals. For (b), the bisection is unsuccessful as there is a squared
+root, which means the bisection again isn't able to compare signs on opposite sides of the root. For (c), there is
+no root within the interval. On the ones where the bisection was successful, it did reach the desired accuracy.
+
+3.
+
+x = 7^(1/5) is a fixed point for these functions as f(x) = x for all of them.
+
+Outputs from bisection methods for each (a)-(d):
+"
+    (a):
+    Traceback (most recent call last):
+    File "/Users/cedergrund/Documents/fall-2023/APPM4600/labs/lab3/exersize3.py", line 70, in <module>
+        driver()
+    File "/Users/cedergrund/Documents/fall-2023/APPM4600/labs/lab3/exersize3.py", line 20, in driver
+        [xstar, ier] = fixedpt(fa, x0, tol, Nmax)
+    File "/Users/cedergrund/Documents/fall-2023/APPM4600/labs/lab3/exersize3.py", line 58, in fixedpt
+        x1 = f(x0)
+    File "/Users/cedergrund/Documents/fall-2023/APPM4600/labs/lab3/exersize3.py", line 9, in <lambda>
+        fa = lambda x: x * (1 + ((7 - x**5) / (x**2))) ** 3
+    OverflowError: (34, 'Result too large')
+
+    (b):
+    Traceback (most recent call last):
+    File "/Users/cedergrund/Documents/fall-2023/APPM4600/labs/lab3/exersize3.py", line 70, in <module>
+        driver()
+    File "/Users/cedergrund/Documents/fall-2023/APPM4600/labs/lab3/exersize3.py", line 27, in driver
+        [xstar, ier] = fixedpt(fb, x0, tol, Nmax)
+    File "/Users/cedergrund/Documents/fall-2023/APPM4600/labs/lab3/exersize3.py", line 58, in fixedpt
+        x1 = f(x0)
+    File "/Users/cedergrund/Documents/fall-2023/APPM4600/labs/lab3/exersize3.py", line 10, in <lambda>
+        fb = lambda x: x - ((x**5 - 7) / (x**2))
+    OverflowError: (34, 'Result too large')
+
+    (c):
+    the approximate fixed point is: 1.475773161594552
+    fc(xstar): 1.4757731615945522
+    Error message reads: 0
+
+
+    (d):
+    the approximate fixed point is: 1.473578045466708
+    fd(xstar): 1.4779035096682074
+    Error message reads: 0
+"
+We can see that the outputs converge for part c and d but not for a nor b. The method doesn't work for part a 
+and b because the actual function is very steep (the derivative is high) such that the x-value is never able
+to stabilize before the y output goes to crazy high values, causing OverflowError. 

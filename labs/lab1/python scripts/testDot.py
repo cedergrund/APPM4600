@@ -49,7 +49,6 @@ def dotProduct(x, y, n):
     return dp
 
 
-# dot product method using in matrix multiplication
 def dotProduct4Matrix(x, y, n):
     dp = 0.0
     for j in range(n):
@@ -58,7 +57,6 @@ def dotProduct4Matrix(x, y, n):
     return dp
 
 
-# basic driver function for matrix multiplication
 def matrixMult(x, y):
     if x.shape[1] != y.shape[0]:
         print("Cannot matrix multiply with matrices of these shapes. Try again")
