@@ -1,0 +1,6 @@
+Exersizes 3.2
+
+The convergence of Aitken's method is a lot faster than the normal fixed point iteration. Calling the rate of convergence method we find that 
+the convergence is still linear; however, the order of convergence sequence for Aitken's method produces an asymptotic error constant that is 
+much smaller than that for the fixed point iteration (~0.016 vs. ~0.127)
+
