@@ -26,14 +26,15 @@ def driver():
     # tolerance
     tol = 1e-4
 
-    print("normal version:")
+    print("(2):\n")
+    print("normal version (part a):")
     [astar, ier] = bisection(f, a, b, tol)
     print("the approximate root is", astar)
     # print("the error message reads:", ier)
     print("f(root) =", f(astar))
     print("\n")
 
-    print("expanded version:")
+    print("expanded version (part b):")
     [astar, ier] = bisection(f_expanded, a, b, tol)
     print("the approximate root is", astar)
     # print("the error message reads:", ier)

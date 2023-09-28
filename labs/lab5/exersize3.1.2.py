@@ -1,30 +1,10 @@
 import numpy as np
 
-# imported bisection method from provided example
-
 
 def driver():
-    # function decleration
-    f = lambda x: x**3 + x - 4
-
-    # endpoints for parts a,b,c
-    a = 1
-    b = 4
-
-    # tolerance
-    tol = 1e-3
-    print("(3):\n")
-    print("approximation:")
-    [astar, ier] = bisection(f, a, b, tol)
-    print("the approximate root is", astar)
-    # print("the error message reads:", ier)
-    print("f(root) =", f(astar))
-    print("\n")
-
     return
 
 
-# define routines
 def bisection(f, a, b, tol):
     #    Inputs:
     #     f,a,b       - function and endpoints of initial interval
@@ -82,5 +62,4 @@ def bisection(f, a, b, tol):
     return [astar, ier]
 
 
-print("")
 driver()

@@ -1,6 +1,9 @@
 import numpy as np
 
-# imported bisection method from provided example
+# imported bisection method from class example
+# with added print statements at each iteration
+# and tolerance checking for relative error
+# instead of absolute error
 
 
 def driver():
@@ -11,9 +14,10 @@ def driver():
     a = 0
     b = np.pi / 2
 
-    # tolerance
-    tol = 1e-9
+    # tolerance for 8 correct digits
+    tol = 0.5 * 10**-8
 
+    print("(1):\n")
     [astar, ier] = bisection(f, a, b, tol)
     print("the approximate root is", astar)
     # print("the error message reads:", ier)
@@ -25,18 +29,6 @@ def driver():
 
 # define routines
 def bisection(f, a, b, tol):
-    #    Inputs:
-    #     f,a,b       - function and endpoints of initial interval
-    #      tol  - bisection stops when interval length < tol
-
-    #    Returns:
-    #      astar - approximation of root
-    #      ier   - error message
-    #            - ier = 1 => Failed
-    #            - ier = 0 == success
-
-    #     first verify there is a root we can find in the interval
-
     fa = f(a)
     fb = f(b)
     if fa * fb > 0:
@@ -57,7 +49,7 @@ def bisection(f, a, b, tol):
 
     count = 0
     d = 0.5 * (a + b)
-    while abs(d - a) > tol:
+    while abs(d - a) / abs(d) > tol:
         fd = f(d)
         if fd == 0:
             astar = d

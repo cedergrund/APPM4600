@@ -17,7 +17,7 @@ def driver():
     x1, x2, x3, x4, x5 = -0.9, -0.4, 1.7, 3, 4.5
 
     # running method
-    print("")
+    print("\n(5):\n")
     print("looking for root at x=-0.898 with x0 =", x1)
     [xstar, ier] = fixedpt(f, x1, tol, Nmax)
     print("the approximate fixed point is:", xstar)
