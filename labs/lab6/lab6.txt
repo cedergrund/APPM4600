@@ -1,0 +1,67 @@
+exersize3.2 
+
+    1.  Decide on a condition under which you will think you should recompute the Jacobian. 
+        This could involve the distance between iterates, norms of a particular vector (i.e. 
+        understanding what the Newton update is), etc.
+
+    My condition is simply update Jacobian every 3 iterations. My partner's condition is running Newton 
+    until a certain tolerance is reached, at which point we run lazy newtons.
+
+    2. & 3.
+    code in exersize3.2.py file. output below - 
+    "
+        now running lazy newtons:
+        converged after 7 iterations
+        [array([ 0.99860694, -0.10553049]), 0, 7]
+
+        now running slacker newtons:
+        converged after 4 iterations with 2 jacobian calculations.
+        [array([ 0.99860694, -0.10553049]), 0, 4, 2]
+    "
+
+    4. How does your Slacker Newton perform compared with your lab partner’s version? How does it perform for the example problem from class?
+
+    Both techniques converge after 4 iterations with 2 jacobian updates. I would say this runs better 
+    than lazy as lazy uses 7 iterations with 1 calculation.
+
+
+
+exersize3.3:
+
+    output for .py file:
+    "
+        now running newtons for various h:
+
+        h =  0.1
+        converged after 7 iterations.
+        [array([ 0.99860694, -0.10553049]), 0, 7]
+
+        h =  0.001
+        converged after 4 iterations.
+        [array([ 0.99860694, -0.10553049]), 0, 4]
+
+        h =  1e-05
+        converged after 3 iterations.
+        [array([ 0.99860694, -0.10553049]), 0, 3]
+
+        h =  1e-07
+        converged after 3 iterations.
+        [array([ 0.99860694, -0.10553049]), 0, 3]
+
+        h =  1e-11
+        converged after 3 iterations.
+        [array([ 0.99860694, -0.10553049]), 0, 3]
+
+        h =  1e-13
+        converged after 4 iterations.
+        [array([ 0.99860694, -0.10553049]), 0, 4]
+
+
+        now running normal newtons method:
+
+        converged after 3 iterations.
+        [array([ 0.99860694, -0.10553049]), 0, 3]
+    "
+
+    here we can see that with certain h values we can run the iteration with same number of iterations without having to 
+    calculate the derivative, which is very nice for certain functions.
