@@ -1,0 +1,60 @@
+LAB 7 - Gustav Cedergrund
+
+Prelab:
+
+For each x_j in [a,b], we can define an equation
+
+    P(x_j) = a_0 + a_1*(x_j) + a_2*(x_j)^2 + ... + a_n*(x_j)^n
+
+which lets us define the linear system that one would need to solve as 
+    A*a=p
+where 
+    A is the main matrix we need to invert, written as
+        [
+            [1, x_0, x_0^2, ..., x_0^n],
+            [1, x_1, x_1^2, ..., x_1^n],
+            ...
+            [1, x_n, x_n^2, ..., x_n^n]
+        ]
+    ,
+    a is the vector of unknown a_i values from i in {0,1,...,n}, written as
+        [a_0, a_1, a_2, ...,a_n]^T
+    ,
+    and p is the vector of nth Lagrange Interpolating Polynomial evaluated at each x_j, written as
+        [P(x_0), P(x_1), P(x_2), ..., P(x_n)]
+
+The code that would solve for the coefficients would simply be solving the linear system, which we could do by
+simply multiplying the inverse of A against vector p, which is full of knowns as each P(x_j) = f(x_j). There are
+certainly also less expensive methods of solving the linear system, but this would work as long as each x_j is
+distinct.
+
+
+Brief summary of remaining of lab:
+    In this lab, we explore different methods of constructing and evaluating interpolating polynomials, 
+    comparing the performance for each method. We then investigate a technique for improving the error 
+    at certain points of a given interval, and explore how applying this technique changes the 
+    error of the polynomial. 
+
+
+Exercise 3.1:
+
+    Code for this part is in 'exersize.3.1.py' file. I have attached the images for N=3,10,18 
+    in the 'outputs3.1.pdf' file.
+    
+    Here, we see that all methods output the same values/errors as they each represent the same
+    polynomial; however, as each method has a different way of computing that polynomial, some 
+    methods are more or less expensive than others.As there are more points to base the polynomial 
+    off of, in general, we get more accurate approximation for higher N. However, towards the 
+    ends of the interval (and especially visible w/ N=18), the error increases as N gets larger. Still,
+    there is no difference in prediction between the methods.
+
+
+Exercise 3.2:
+
+    Code for this part is in 'exersize.3.2.py' file. I have attached the images for the same 
+    N=3,10,18 in the 'outputs3.2.pdf' file.
+
+    The behavior has changed as the error near the ends of the intervals is much decreased,
+    especially for the higher N values. In the absolute error plot, we see differences in that
+    all of the "error parabolas" (ie., where there is a x_j so the P(x_j)=f(x_j) and the error is 0)
+    aren't evenly spaced apart and are denser closer to the edges of the intervals.
