@@ -59,7 +59,7 @@ def driver(n=3):
     plt.plot(xeval, y_eval_m, "k--")
     plt.plot(xeval, yeval_l, "b--")
     plt.plot(xeval, yeval_dd, "c:")
-    plt.plot(xeval, yevallin, "m-.")
+    plt.plot(xeval, yevallin, "m")
     plt.legend()
 
     plt.figure()
@@ -71,7 +71,7 @@ def driver(n=3):
     plt.semilogy(xeval, err_m, "k--", label="monomial")
     plt.semilogy(xeval, err_l, "b--", label="lagrange")
     plt.semilogy(xeval, err_dd, "c:", label="Newton DD")
-    plt.semilogy(xeval, err_lin, "m-.", label="linear spline")
+    plt.semilogy(xeval, err_lin, "m", label="linear spline")
     plt.legend()
     plt.show()
 

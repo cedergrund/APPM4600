@@ -110,25 +110,26 @@ def evalCubicSpline(xeval, Neval, a, b, f, Nint):
 
 
 def identifyM(x_int, y_int, N):
-    h = x_int[1] - x_int[0]
-    M_inner = np.zeros(N - 1)
-    A = np.zeros((N - 1, N - 1))
-    y = np.zeros(N - 1)
-    for i in range(N - 1):
-        A[i][i] = 1 / 3
-        if i != 0:
-            A[i][i - 1] = 1 / 12
-        if i != N - 2:
-            A[i][i + 1] = 1 / 12
+    # create right hand side + h vector
+    y = np.zeros(N + 1)
+    h = np.zeros(N)
+    for i in range(1, N):
+        hi = x_int[i] - x_int[i - 1]
+        hip = x_int[i + 1] - x_int[i]
+        y[i] = (y_int[i + 1] - y_int[i]) / hip - (y_int[i] - y_int[i - 1]) / hi
+        h[i - 1] = hi
+        h[i] = hip
 
-        y[i] = (y_int[i + 2] - 2 * y_int[i + 1] + y_int[i]) / (2 * h)
+    # create matrix
+    A = np.zeros((N + 1, N + 1))
+    A[0][0] = 1
+    for i in range(1, N):
+        A[i][i - 1] = h[i - 1] / 6
+        A[i][i] = (h[i] + h[i - 1]) / 3
+        A[i][i + 1] = h[i] / 6
+    A[N][N] = 1
 
-    M_inner = np.matmul(np.linalg.inv(A), y)
-    M = np.zeros(N + 1)
-    for i in range(N + 1):
-        if i == 0 or i == N:
-            continue
-        M[i] = M_inner[i - 1]
+    M = np.matmul(np.linalg.inv(A), y)
     return M
 
 
@@ -138,8 +139,7 @@ def cubicPolyEvaluator(Mi, Mi1, xi, xi1, fxi, fxi1):
     D = (fxi1 / hi) - (hi * Mi1 / 6)
 
     f = (
-        lambda x: ((xi1 - x) ** 3) * Mi / (6 * hi)
-        + ((x - xi) ** 3) * Mi1 / (6 * hi)
+        lambda x: (((xi1 - x) ** 3) * Mi + ((x - xi) ** 3) * Mi1) / (6 * hi)
         + C * (xi1 - x)
         + D * (x - xi)
     )
